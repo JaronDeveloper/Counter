@@ -12,6 +12,14 @@ public:
 		count--;
 		return count;
 	}	
+	int countAdd(int count) {
+		count++;
+		return count;
+	}
+	int countSubtract(int count) {
+		count--;
+		return count;
+	}
 };
 
 int main() {
@@ -37,21 +45,34 @@ int main() {
 	{		
 		std::cout << "Введите команду ('+', '-', '=' или 'x'): ";
 		std::cin >> keyCode;
+		if (question == "да")
+		{
+			if (keyCode == '+') {
+				count.countAdd();
+				continue;
+			}
 
-		if (keyCode == '+') {
-			count.countAdd();
-			continue;
+			if (keyCode == '-') {
+				count.countSubtract();
+				continue;
+			}
 		}
+		else{
+			if (keyCode == '+') {
+				count.count=count.countAdd(count.count);
+				continue;
+			}
 
-		if (keyCode == '-') {
-			count.countSubtract();
-			continue;
-		}
+			if (keyCode == '-') {
+				count.count = count.countSubtract(count.count);
+				continue;
+			}
+		}	
 
 		if (keyCode == '=') {
 			std::cout << count.count << std::endl;
 			continue;
-		}		
+		}
 
 		if (keyCode == 'х') {
 			std::cout << "До свидания!" << std::endl;
