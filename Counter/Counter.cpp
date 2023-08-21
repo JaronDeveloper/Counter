@@ -3,22 +3,24 @@
 
 class Counter {
 public:
-	int count=1;
+	int count;
+
 	int countAdd() {
 		count++;
 		return count;
 	}
+
 	int countSubtract() {
 		count--;
 		return count;
 	}	
-	int countAdd(int count) {
-		count++;
-		return count;
+
+	Counter() {
+		count = 1;
 	}
-	int countSubtract(int count) {
-		count--;
-		return count;
+
+	Counter(int initialValue) {
+		count = initialValue;
 	}
 };
 
@@ -33,11 +35,15 @@ int main() {
 
     std::cout << "Вы хотите указать начальное значение счётчика? Введите да или нет: ";
 	std::cin >> question;
+
 	if (question == "да")
 	{
 	 std::cout << "Введите начальное значение счётчика: ";
 	 std::cin  >> count.count;			
-	}else {
+	 Counter(count.count);
+	}
+	if (question == "нет"){
+		Counter();
 		std::cout << "Начальное значение счётчика: " << count.count << std::endl;
 	}
 
@@ -45,28 +51,15 @@ int main() {
 	{		
 		std::cout << "Введите команду ('+', '-', '=' или 'x'): ";
 		std::cin >> keyCode;
-		if (question == "да")
-		{
-			if (keyCode == '+') {
-				count.countAdd();
-				continue;
-			}
-
-			if (keyCode == '-') {
-				count.countSubtract();
-				continue;
-			}
+	
+		if (keyCode == '+') {
+			count.countAdd();
+			continue;
 		}
-		else{
-			if (keyCode == '+') {
-				count.count=count.countAdd(count.count);
-				continue;
-			}
 
-			if (keyCode == '-') {
-				count.count = count.countSubtract(count.count);
-				continue;
-			}
+		if (keyCode == '-') {
+			count.countSubtract();
+			continue;
 		}	
 
 		if (keyCode == '=') {
